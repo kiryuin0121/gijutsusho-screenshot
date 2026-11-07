@@ -1,0 +1,8 @@
+node_modules/
+dist/
+screenshots/
+browser_profile/
+*.pdf
+*.log
+.env
+.DS_Store
