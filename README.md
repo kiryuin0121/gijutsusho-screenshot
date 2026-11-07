@@ -6,12 +6,14 @@
 
 ```bash
 bun install
-bun run setup   # Chromium のダウンロード
+bun run setup        # Chromium のダウンロード
+cp .env.example .env # VIEWER_URL を書く
 ```
 
 ## 使い方
 
-`index.ts` 冒頭の `CONFIG` を書き換えて実行する。
+`.env` に対象URLを設定し（ページ番号部分を `{page}` にする）、実行する。
+その他の設定は `index.ts` 冒頭の `CONFIG`。
 
 ```bash
 bun start
