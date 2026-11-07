@@ -1,5 +1,6 @@
 node_modules/
 screenshots/
+output/
 browser_profile/
 *.pdf
 *.log
