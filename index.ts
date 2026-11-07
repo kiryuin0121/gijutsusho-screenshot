@@ -102,7 +102,7 @@ function shotPath(n: number): string {
   return `${CONFIG.outDir}/page_${String(n).padStart(digits, "0")}.jpg`;
 }
 
-/** 毎回ちがう名前にするため、URLと日時から出力先を決める。同名があれば連番を足す */
+/** URLから出力先を決める。同名があれば連番を足すので、既存のPDFは上書きしない */
 async function autoPdfPath(): Promise<string> {
   let slug = "pages";
   try {
@@ -110,10 +110,7 @@ async function autoPdfPath(): Promise<string> {
   } catch {
     // URLとして解釈できない形でも止めない
   }
-  const d = new Date();
-  const pad = (v: number) => String(v).padStart(2, "0");
-  const stamp = `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
-  const base = `${CONFIG.pdfDir}/${slug.replace(/[^\w.-]/g, "_")}_${stamp}`;
+  const base = `${CONFIG.pdfDir}/${slug.replace(/[^\w.-]/g, "_")}`;
 
   let path = `${base}.pdf`;
   for (let i = 2; await Bun.file(path).exists(); i++) path = `${base}_${i}.pdf`;
